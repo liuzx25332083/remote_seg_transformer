@@ -1,0 +1,8 @@
+{
+  "data_root": "data",
+  "output_root": "outputs_smoke",
+  "batch_size": 4,
+  "epochs": 1,
+  "early_stopping_patience": 1,
+  "torch_num_threads": 8
+}

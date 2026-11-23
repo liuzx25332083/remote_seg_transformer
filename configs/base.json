@@ -1,0 +1,107 @@
+{
+  "project_name": "DeepGlobe ResNet-34 Transformer Land Cover Segmentation",
+  "data_root": "data",
+  "output_root": "outputs",
+  "source_repo": "Zongrong/DeepGlobe_LandCover_Classification_Dataset",
+  "source_revision": "1d7e61bf185dcfff5793c2a0500b4788764a41eb",
+  "source_split": "train",
+  "source_image_count": 96,
+  "source_sampling_seed": 42,
+  "download_workers": 8,
+  "split_seed": 42,
+  "split_ratios": {
+    "train": 0.7,
+    "val": 0.15,
+    "test": 0.15
+  },
+  "crop_size": 256,
+  "image_size": 128,
+  "patches_per_image": 16,
+  "num_classes": 7,
+  "ignore_index": 6,
+  "class_names": [
+    "Urban",
+    "Agriculture",
+    "Rangeland",
+    "Forest",
+    "Water",
+    "Barren",
+    "Unknown"
+  ],
+  "palette": [
+    [0, 255, 255],
+    [255, 255, 0],
+    [255, 0, 255],
+    [0, 255, 0],
+    [0, 0, 255],
+    [255, 255, 255],
+    [0, 0, 0]
+  ],
+  "batch_size": 8,
+  "num_workers": 0,
+  "learning_rate": 0.0003,
+  "weight_decay": 0.0001,
+  "epochs": 8,
+  "early_stopping_patience": 3,
+  "torch_num_threads": 12,
+  "device_preference": "cuda_if_available",
+  "amp": true,
+  "selection_metric": "val_miou",
+  "models": {
+    "unet_scratch": {
+      "pretrained": false,
+      "use_transformer_bottleneck": false,
+      "use_transformer_decoder": false,
+      "d_model": 256,
+      "num_heads": 4,
+      "num_layers": 2
+    },
+    "resnet34_unet": {
+      "pretrained": true,
+      "freeze_prefixes": ["conv1", "bn1", "layer1", "layer2"],
+      "use_transformer_bottleneck": false,
+      "use_transformer_decoder": false,
+      "d_model": 256,
+      "num_heads": 4,
+      "num_layers": 2
+    },
+    "resnet34_unet_full_finetune": {
+      "pretrained": true,
+      "freeze_prefixes": [],
+      "use_transformer_bottleneck": false,
+      "use_transformer_decoder": false,
+      "d_model": 256,
+      "num_heads": 4,
+      "num_layers": 2
+    },
+    "resnet34_transformer": {
+      "pretrained": true,
+      "freeze_prefixes": ["conv1", "bn1", "layer1", "layer2"],
+      "use_transformer_bottleneck": true,
+      "use_transformer_decoder": false,
+      "d_model": 256,
+      "num_heads": 4,
+      "num_layers": 2
+    },
+    "resnet34_transformer_decoder": {
+      "pretrained": true,
+      "freeze_prefixes": ["conv1", "bn1", "layer1", "layer2"],
+      "use_transformer_bottleneck": true,
+      "use_transformer_decoder": true,
+      "transformer_decoder_stage": 4,
+      "d_model": 256,
+      "num_heads": 4,
+      "num_layers": 2
+    },
+    "resnet34_transformer_decoder_v2": {
+      "pretrained": true,
+      "freeze_prefixes": ["conv1", "bn1", "layer1", "layer2"],
+      "use_transformer_bottleneck": false,
+      "use_transformer_decoder": true,
+      "transformer_decoder_stage": 3,
+      "d_model": 256,
+      "num_heads": 4,
+      "num_layers": 2
+    }
+  }
+}

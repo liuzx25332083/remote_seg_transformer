@@ -1,0 +1,13 @@
+{
+  "data_root": "data_256",
+  "source_data_root": "data",
+  "output_root": "outputs",
+  "crop_size": 256,
+  "image_size": 256,
+  "batch_size": 4,
+  "epochs": 12,
+  "early_stopping_patience": 4,
+  "torch_num_threads": 4,
+  "num_workers": 2,
+  "amp": true
+}
